@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.refactorsecurity'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.opencsv:opencsv:5.9'
+    implementation 'net.portswigger.burp.extensions:montoya-api:+'
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
